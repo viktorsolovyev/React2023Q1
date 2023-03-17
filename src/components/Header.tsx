@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Container = styled.header`
   background-color: #fff;
@@ -20,13 +21,20 @@ const StyledHeader = styled.div`
   margin-right: auto;
   padding-left: 20px;
   padding-right: 20px;
+  font-size: 1.5rem;
+  justify-content: center;
 `;
 
 class Header extends Component {
   render() {
     return (
       <Container>
-        <StyledHeader></StyledHeader>
+        <StyledHeader>
+          {/* <a href="/">Home</a>
+          <a href="/about">About</a> */}
+          <Link to="/">Home</Link>
+          <Link to="/about">About</Link>
+        </StyledHeader>
       </Container>
     );
   }
