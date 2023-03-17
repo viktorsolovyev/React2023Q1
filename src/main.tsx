@@ -28,12 +28,7 @@ import "./styles/global.css";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <>
-        {/* <GlobalStyle /> */}
-        <App />
-      </>
-    ),
+    element: <App />,
   },
 ]);
 

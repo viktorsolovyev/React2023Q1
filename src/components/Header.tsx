@@ -26,7 +26,7 @@ class Header extends Component {
   render() {
     return (
       <Container>
-        <StyledHeader>Hi</StyledHeader>
+        <StyledHeader></StyledHeader>
       </Container>
     );
   }
