@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./styles/normalize.css";
 import "./styles/global.css";
 import AboutPage from "./pages/AboutPage";
+import HomePage from "./pages/HomePage";
 
 // import { createGlobalStyle } from "styled-components";
 
@@ -28,13 +29,12 @@ import AboutPage from "./pages/AboutPage";
 
 const router = createBrowserRouter([
   {
-    path: "/",
     element: <App />,
     children: [
-      // {
-      //   path: "dashboard",
-      //   element: <Home />,
-      // },
+      {
+        path: "/",
+        element: <HomePage />,
+      },
       {
         path: "about",
         element: <AboutPage />,
