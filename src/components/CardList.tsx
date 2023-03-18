@@ -13,7 +13,7 @@ const StyledUl = styled.ul`
 //   label: string;
 // };
 
-class Header extends Component {
+class CardList extends Component {
   render() {
     return (
       <StyledUl>
@@ -25,4 +25,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default CardList;
