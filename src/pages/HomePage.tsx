@@ -2,9 +2,11 @@ import SearchForm from "../components/SearchForm";
 import React from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
+import CardList from "../components/CardList";
 
 const StyledHomePage = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   max-width: 1680px;
@@ -21,7 +23,8 @@ const HomePage = () => {
     <>
       <Header label="Home" />
       <StyledHomePage>
-        <SearchForm></SearchForm>
+        <SearchForm />
+        <CardList />
       </StyledHomePage>
     </>
   );
