@@ -44,16 +44,13 @@ class SearchForm extends Component<Props, State> {
   };
   constructor(props: Props) {
     super(props);
+    this.state.search = localStorage.getItem("searchValue") || "";
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(event: React.FormEvent<HTMLInputElement>) {
     this.setState({ search: event.currentTarget.value });
     localStorage.setItem("searchValue", event.currentTarget.value);
-  }
-
-  componentDidMount() {
-    this.setState({ search: localStorage.getItem("searchValue") || "" });
   }
 
   componentWillUnmount() {

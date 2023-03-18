@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-const Container = styled.header`
-  background-color: #fff;
+const StyledHeader = styled.header`
+  background-color: #f7f6f0;
   height: 80px;
   justify-content: center;
 `;
 
-const StyledHeader = styled.div`
+const Container = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
@@ -22,20 +22,28 @@ const StyledHeader = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   font-size: 1.5rem;
-  justify-content: center;
+  justify-content: flex-end;
+  .active {
+    color: red;
+  }
 `;
 
-class Header extends Component {
+type HeaderProps = {
+  label: string;
+};
+
+class Header extends Component<HeaderProps> {
   render() {
     return (
-      <Container>
-        <StyledHeader>
-          {/* <a href="/">Home</a>
-          <a href="/about">About</a> */}
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-        </StyledHeader>
-      </Container>
+      <StyledHeader>
+        <Container>
+          <h1>{this.props.label}</h1>
+          <Container>
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/about">About</NavLink>
+          </Container>
+        </Container>
+      </StyledHeader>
     );
   }
 }
