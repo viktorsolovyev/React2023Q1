@@ -11,7 +11,7 @@ type State = {
 
 const StyledSearchForm = styled.form`
   display: inline-flex;
-  width: 389px;
+  width: 600px;
   height: 100%;
   align-items: center;
 `;
@@ -20,11 +20,11 @@ const StyledInput = styled.input`
   font-size: 20px;
   border-radius: 30px;
   width: 100%;
-  height: 53px;
+  height: 50px;
   padding-left: 60px;
   padding-right: 20px;
   position: relative;
-  background: no-repeat left 20px center#F5F5F5
+  background: no-repeat left 20px center#FFFFFF
     url("../src/assets/icons/search.svg");
   &::-webkit-input-placeholder {
     color: rgba(0, 0, 0, 0.2);

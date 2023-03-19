@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 const StyledHeader = styled.header`
-  background-color: #f7f6f0;
+  background-color: #ffffff;
   height: 80px;
   justify-content: center;
 `;
@@ -24,7 +24,7 @@ const Container = styled.div`
   font-size: 1.5rem;
   justify-content: flex-end;
   .active {
-    color: red;
+    color: #ff4500;
   }
 `;
 

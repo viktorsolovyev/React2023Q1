@@ -14,7 +14,7 @@ const StyledHomePage = styled.div`
   margin: 0 auto;
   align-items: center;
   max-width: 1700px;
-  margin-top: 10px;
+  margin-top: 25px;
   justify-content: center;
 `;
 
