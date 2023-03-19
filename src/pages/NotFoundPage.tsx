@@ -15,6 +15,7 @@ const StyledNotFoundPage = styled.div`
   margin-top: 10px;
   font-size: 2rem;
 `;
+
 const StyledNavLink = styled.div`
   font-size: 1.5rem;
   text-decoration: underline;
