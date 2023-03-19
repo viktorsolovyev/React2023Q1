@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import CardItem from "./CardItem";
+import products from "../data/products";
 
 const StyledUl = styled.ul`
   margin-top: 25px;
@@ -9,17 +11,13 @@ const StyledUl = styled.ul`
   row-gap: 25px;
 `;
 
-// type HeaderProps = {
-//   label: string;
-// };
-
 class CardList extends Component {
   render() {
     return (
       <StyledUl>
-        {/* {totalProducts.map(product => 
-      <ProductCart isRow={isRow} key={product.id} product={product}/>
-    )} */}
+        {products.map((product) => (
+          <CardItem key={product.id} product={product} />
+        ))}
       </StyledUl>
     );
   }
