@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { TProduct } from "types/types";
 
-const StyledItem = styled.a`
+const StyledItem = styled.li`
   height: auto;
   max-width: 401px;
   padding: 20px;
