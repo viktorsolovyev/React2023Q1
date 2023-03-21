@@ -1,7 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import "./styles/normalize.css";
 import "./styles/global.css";
 import AboutPage from "./pages/AboutPage";
@@ -21,8 +25,12 @@ const router = createBrowserRouter([
         element: <AboutPage />,
       },
       {
-        path: "*",
+        path: "404",
         element: <NotFoundPage />,
+      },
+      {
+        path: "*",
+        element: <Navigate to="404" />,
       },
     ],
   },
