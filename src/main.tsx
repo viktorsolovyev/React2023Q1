@@ -11,6 +11,7 @@ import "./styles/global.css";
 import AboutPage from "./pages/AboutPage";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
+import FormsPage from "./pages/FormsPage";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "404",
         element: <NotFoundPage />,
+      },
+      {
+        path: "forms",
+        element: <FormsPage />,
       },
       {
         path: "*",

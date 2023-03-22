@@ -41,6 +41,7 @@ class Header extends Component<HeaderProps> {
           <Container>
             <NavLink to="/">Home</NavLink>
             <NavLink to="/about">About</NavLink>
+            <NavLink to="/forms">Forms</NavLink>
           </Container>
         </Container>
       </StyledHeader>
