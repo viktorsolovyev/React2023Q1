@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import CardItem from "./CardItem";
+import CardItem from "./components/CardItem";
 import products from "../data/products";
 
 const StyledUl = styled.ul`

@@ -1,4 +1,4 @@
-import SearchForm from "../components/SearchForm";
+import SearchForm from "../components/components/SearchForm";
 import React from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
