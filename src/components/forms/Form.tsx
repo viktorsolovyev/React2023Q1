@@ -8,6 +8,59 @@ type Props = {
 
 type State = Record<string, never>;
 
+class Form extends Component<Props, State> {
+  inputEmail;
+  inputBirthday;
+  selectCoutry;
+  checkboxConsent;
+  constructor(props: Props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.inputEmail = React.createRef<HTMLInputElement>();
+    this.inputBirthday = React.createRef<HTMLInputElement>();
+    this.selectCoutry = React.createRef<HTMLSelectElement>();
+    this.checkboxConsent = React.createRef<HTMLInputElement>();
+  }
+
+  handleSubmit(event: React.SyntheticEvent) {
+    console.log(this.selectCoutry.current?.selectedIndex);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <StyledForm action="" onSubmit={this.handleSubmit}>
+        <div>
+          <h6>Email</h6>
+          <StyledInput ref={this.inputEmail} type="text" />
+        </div>
+        <div>
+          <h6>Birthday</h6>
+          <StyledInput ref={this.inputBirthday} type="date" />
+        </div>
+        <div>
+          <h6>Coutry</h6>
+          <StyledSelect defaultValue="" ref={this.selectCoutry}>
+            <option value="">----------</option>
+            {countries.map((country, index) => (
+              <option key={index} value={country.name}>
+                {country.label}
+              </option>
+            ))}
+          </StyledSelect>
+        </div>
+        <div>
+          <StyledLabel>
+            <StyledInput ref={this.checkboxConsent} type="checkbox" />
+            <div>I consent to my personal data</div>
+          </StyledLabel>
+        </div>
+        <StyledButton type="submit">Submit</StyledButton>
+      </StyledForm>
+    );
+  }
+}
+
 const StyledForm = styled.form`
   font-size: 20px;
   display: flex;
@@ -18,6 +71,13 @@ const StyledForm = styled.form`
   gap: 10px;
 `;
 
+const StyledLabel = styled.label`
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin: 2px;
+`;
+
 const StyledInput = styled.input`
   font-size: 20px;
   border-radius: 10px;
@@ -25,6 +85,10 @@ const StyledInput = styled.input`
   height: 45px;
   padding-left: 10px;
   padding-right: 10px;
+  &[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 const StyledSelect = styled.select`
@@ -53,50 +117,5 @@ const StyledButton = styled.button`
     background: white;
   }
 `;
-
-class Form extends Component<Props, State> {
-  inputEmail;
-  inputBirthday;
-  selectCoutry;
-  constructor(props: Props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.inputEmail = React.createRef<HTMLInputElement>();
-    this.inputBirthday = React.createRef<HTMLInputElement>();
-    this.selectCoutry = React.createRef<HTMLSelectElement>();
-  }
-
-  handleSubmit(event: React.SyntheticEvent) {
-    console.log(this.selectCoutry);
-    event.preventDefault();
-  }
-
-  render() {
-    return (
-      <StyledForm action="" onSubmit={this.handleSubmit}>
-        <div>
-          <h6>Email</h6>
-          <StyledInput ref={this.inputEmail} type="text" />
-        </div>
-        <div>
-          <h6>Birthday</h6>
-          <StyledInput ref={this.inputBirthday} type="date" />
-        </div>
-        <div>
-          <h6>Coutry</h6>
-          <StyledSelect defaultValue="" ref={this.selectCoutry}>
-            <option value="">----------</option>
-            {countries.map((country, index) => (
-              <option key={index} value={country.name}>
-                {country.label}
-              </option>
-            ))}
-          </StyledSelect>
-        </div>
-        <StyledButton type="submit">Submit</StyledButton>
-      </StyledForm>
-    );
-  }
-}
 
 export default Form;
