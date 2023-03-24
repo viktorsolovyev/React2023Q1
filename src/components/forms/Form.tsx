@@ -13,6 +13,8 @@ class Form extends Component<Props, State> {
   inputBirthday;
   selectCoutry;
   checkboxConsent;
+  radioGender;
+
   constructor(props: Props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,10 +22,10 @@ class Form extends Component<Props, State> {
     this.inputBirthday = React.createRef<HTMLInputElement>();
     this.selectCoutry = React.createRef<HTMLSelectElement>();
     this.checkboxConsent = React.createRef<HTMLInputElement>();
+    this.radioGender = React.createRef<HTMLInputElement[]>();
   }
 
   handleSubmit(event: React.SyntheticEvent) {
-    console.log(this.selectCoutry.current?.selectedIndex);
     event.preventDefault();
   }
 
@@ -55,6 +57,22 @@ class Form extends Component<Props, State> {
             <div>I consent to my personal data</div>
           </StyledLabel>
         </div>
+        <fieldset>
+          <legend>Select a gender:</legend>
+          {["male", "female"].map((option) => (
+            <StyledLabel key={option}>
+              <StyledInput
+                ref={(element: HTMLInputElement) =>
+                  this.radioGender.current?.push(element)
+                }
+                type="radio"
+                name="gender"
+                value={option}
+              />
+              <div>{option[0].toUpperCase() + option.slice(1)}</div>
+            </StyledLabel>
+          ))}
+        </fieldset>
         <StyledButton type="submit">Submit</StyledButton>
       </StyledForm>
     );
@@ -85,7 +103,8 @@ const StyledInput = styled.input`
   height: 45px;
   padding-left: 10px;
   padding-right: 10px;
-  &[type="checkbox"] {
+  &[type="checkbox"],
+  &[type="radio"] {
     width: 20px;
     height: 20px;
   }
