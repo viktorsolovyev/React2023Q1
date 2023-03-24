@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import styled from "styled-components";
+import FormsSection from "../components/forms/FormsSection";
 
 const StyledFormsPage = styled.div`
   display: flex;
@@ -20,7 +21,9 @@ const FormsPage = () => {
   return (
     <>
       <Header label="Forms" />
-      <StyledFormsPage>This is forms page!</StyledFormsPage>
+      <StyledFormsPage>
+        <FormsSection />
+      </StyledFormsPage>
     </>
   );
 };

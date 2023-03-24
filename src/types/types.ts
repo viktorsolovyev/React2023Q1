@@ -6,3 +6,8 @@ export type TProduct = {
   price: number;
   description: string;
 };
+
+export type TCountry = {
+  name: string;
+  label: string;
+};
