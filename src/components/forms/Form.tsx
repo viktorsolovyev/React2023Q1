@@ -70,7 +70,6 @@ class Form extends Component<Props, State> {
       this.inputBirthday.current.value = "";
       this.selectCoutry.current.value = "";
       this.checkboxConsent.current.checked = false;
-      // this.radioGender.current = [];
       this.inputPicture.current.value = "";
       this.radioGender.current.forEach((item) => (item.checked = false));
     }
