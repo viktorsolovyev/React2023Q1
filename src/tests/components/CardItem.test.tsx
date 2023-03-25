@@ -1,6 +1,6 @@
 import { describe, it } from "vitest";
 import { render, screen } from "@testing-library/react";
-import CardItem from "../components/components/CardItem";
+import CardItem from "../../components/components/CardItem";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
