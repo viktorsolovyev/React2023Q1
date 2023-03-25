@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import CardItem from "./components/CardItem";
-import products from "../data/products";
+import CardItem from "./CardItem";
+import products from "../../data/products";
 
 const StyledUl = styled.ul`
   margin-top: 20px;
