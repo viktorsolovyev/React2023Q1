@@ -14,6 +14,7 @@ class Form extends Component<Props, State> {
   selectCoutry;
   checkboxConsent;
   radioGender: MutableRefObject<HTMLInputElement[] | null>;
+  inputPicture;
 
   constructor(props: Props) {
     super(props);
@@ -24,6 +25,7 @@ class Form extends Component<Props, State> {
     this.checkboxConsent = React.createRef<HTMLInputElement>();
     this.radioGender = React.createRef();
     this.radioGender.current = [];
+    this.inputPicture = React.createRef<HTMLInputElement>();
   }
 
   handleSubmit(event: React.SyntheticEvent) {
@@ -54,20 +56,26 @@ class Form extends Component<Props, State> {
         </div>
         <fieldset>
           <legend>Select a gender:</legend>
-          {["male", "female"].map((option) => (
-            <StyledLabel key={option}>
-              <StyledInput
-                ref={(element: HTMLInputElement) =>
-                  this.radioGender.current?.push(element)
-                }
-                type="radio"
-                name="gender"
-                value={option}
-              />
-              <div>{option[0].toUpperCase() + option.slice(1)}</div>
-            </StyledLabel>
-          ))}
+          <StyledRowFlexbox>
+            {["male", "female"].map((option) => (
+              <StyledLabel key={option}>
+                <StyledInput
+                  ref={(element: HTMLInputElement) =>
+                    this.radioGender.current?.push(element)
+                  }
+                  type="radio"
+                  name="gender"
+                  value={option}
+                />
+                <div>{option[0].toUpperCase() + option.slice(1)}</div>
+              </StyledLabel>
+            ))}
+          </StyledRowFlexbox>
         </fieldset>
+        <div>
+          <h6>Profile picture</h6>
+          <StyledInput ref={this.inputPicture} type="file" />
+        </div>
         <div>
           <StyledLabel>
             <StyledInput ref={this.checkboxConsent} type="checkbox" />
@@ -79,6 +87,11 @@ class Form extends Component<Props, State> {
     );
   }
 }
+
+const StyledRowFlexbox = styled.div`
+  display: flex;
+  gap: 10px;
+`;
 
 const StyledForm = styled.form`
   font-size: 20px;
