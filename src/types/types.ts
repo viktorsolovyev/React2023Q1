@@ -11,3 +11,12 @@ export type TCountry = {
   name: string;
   label: string;
 };
+
+export type TFormCard = {
+  email: string;
+  birthday: Date;
+  coutry: string;
+  consent: boolean;
+  gender: string;
+  picture: Blob;
+};
