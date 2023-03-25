@@ -22,7 +22,6 @@ class FormsSection extends Component<Props, State> {
   }
 
   addCardToCardList(card: TFormCard) {
-    console.log(card);
     this.setState((prevState: State) => ({
       cards: [...prevState.cards, card],
     }));

@@ -20,6 +20,7 @@ class Form extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.clearFormData = this.clearFormData.bind(this);
     this.inputEmail = React.createRef<HTMLInputElement>();
     this.inputBirthday = React.createRef<HTMLInputElement>();
     this.selectCoutry = React.createRef<HTMLSelectElement>();
@@ -51,6 +52,27 @@ class Form extends Component<Props, State> {
           imageData: URL.createObjectURL(this.inputPicture.current?.files[0]),
         },
       });
+      this.clearFormData();
+    }
+  }
+
+  clearFormData() {
+    if (
+      this.inputEmail.current?.value &&
+      this.inputBirthday.current?.value &&
+      this.selectCoutry.current?.value &&
+      this.checkboxConsent.current &&
+      this.inputPicture.current &&
+      this.inputPicture.current.files &&
+      this.radioGender.current
+    ) {
+      this.inputEmail.current.value = "";
+      this.inputBirthday.current.value = "";
+      this.selectCoutry.current.value = "";
+      this.checkboxConsent.current.checked = false;
+      // this.radioGender.current = [];
+      this.inputPicture.current.value = "";
+      this.radioGender.current.forEach((item) => (item.checked = false));
     }
   }
 
