@@ -1,6 +1,42 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 import Form from "./Form";
+import CardList from "../forms/CardList";
+import { TFormCard } from "types/types";
+
+type Props = {
+  [key: string]: never;
+};
+
+type State = {
+  cards: TFormCard[];
+};
+
+class FormsSection extends Component<Props, State> {
+  state: State = {
+    cards: [],
+  };
+  constructor(props: Props) {
+    super(props);
+    this.addCardToCardList = this.addCardToCardList.bind(this);
+  }
+
+  addCardToCardList(card: TFormCard) {
+    console.log(card);
+    this.setState((prevState: State) => ({
+      cards: [...prevState.cards, card],
+    }));
+  }
+
+  render() {
+    return (
+      <StyledFormsBlock>
+        <Form addCardFunc={(card: TFormCard) => this.addCardToCardList(card)} />
+        <CardList cards={this.state.cards} />
+      </StyledFormsBlock>
+    );
+  }
+}
 
 const StyledFormsBlock = styled.div`
   display: flex;
@@ -15,13 +51,5 @@ const StyledFormsBlock = styled.div`
   margin-top: 10px;
   font-size: 2rem;
 `;
-
-const FormsSection = () => {
-  return (
-    <StyledFormsBlock>
-      <Form />
-    </StyledFormsBlock>
-  );
-};
 
 export default FormsSection;

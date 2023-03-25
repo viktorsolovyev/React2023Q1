@@ -18,5 +18,5 @@ export type TFormCard = {
   coutry: string;
   consent: boolean;
   gender: string;
-  picture: Blob;
+  picture: { imageType: string; imageData: string };
 };

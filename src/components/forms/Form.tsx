@@ -1,9 +1,10 @@
 import React, { Component, MutableRefObject } from "react";
 import styled from "styled-components";
+import { TFormCard } from "types/types";
 import countries from "../../data/countries";
 
 type Props = {
-  [key: string]: never;
+  addCardFunc: (card: TFormCard) => void;
 };
 
 type State = Record<string, never>;
@@ -30,6 +31,27 @@ class Form extends Component<Props, State> {
 
   handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
+    if (
+      this.inputEmail.current?.value &&
+      this.inputBirthday.current?.value &&
+      this.selectCoutry.current?.value &&
+      this.inputPicture.current &&
+      this.inputPicture.current.files &&
+      this.radioGender.current
+    ) {
+      const gender = this.radioGender.current.find((el) => el.checked)?.value;
+      this.props.addCardFunc({
+        email: this.inputEmail.current?.value,
+        birthday: new Date(this.inputBirthday.current?.value),
+        coutry: this.selectCoutry.current?.value,
+        consent: Boolean(this.checkboxConsent.current?.value),
+        gender: gender ? gender : "Male",
+        picture: {
+          imageType: this.inputPicture.current?.files[0].type,
+          imageData: URL.createObjectURL(this.inputPicture.current?.files[0]),
+        },
+      });
+    }
   }
 
   render() {
@@ -57,7 +79,7 @@ class Form extends Component<Props, State> {
         <fieldset>
           <legend>Select a gender:</legend>
           <StyledRowFlexbox>
-            {["male", "female"].map((option) => (
+            {["Male", "Female"].map((option) => (
               <StyledLabel key={option}>
                 <StyledInput
                   ref={(element: HTMLInputElement) =>
@@ -67,7 +89,7 @@ class Form extends Component<Props, State> {
                   name="gender"
                   value={option}
                 />
-                <div>{option[0].toUpperCase() + option.slice(1)}</div>
+                <div>{option}</div>
               </StyledLabel>
             ))}
           </StyledRowFlexbox>
