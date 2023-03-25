@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, MutableRefObject } from "react";
 import styled from "styled-components";
 import countries from "../../data/countries";
 
@@ -13,7 +13,7 @@ class Form extends Component<Props, State> {
   inputBirthday;
   selectCoutry;
   checkboxConsent;
-  radioGender;
+  radioGender: MutableRefObject<HTMLInputElement[] | null>;
 
   constructor(props: Props) {
     super(props);
@@ -22,7 +22,8 @@ class Form extends Component<Props, State> {
     this.inputBirthday = React.createRef<HTMLInputElement>();
     this.selectCoutry = React.createRef<HTMLSelectElement>();
     this.checkboxConsent = React.createRef<HTMLInputElement>();
-    this.radioGender = React.createRef<HTMLInputElement[]>();
+    this.radioGender = React.createRef();
+    this.radioGender.current = [];
   }
 
   handleSubmit(event: React.SyntheticEvent) {
@@ -51,12 +52,6 @@ class Form extends Component<Props, State> {
             ))}
           </StyledSelect>
         </div>
-        <div>
-          <StyledLabel>
-            <StyledInput ref={this.checkboxConsent} type="checkbox" />
-            <div>I consent to my personal data</div>
-          </StyledLabel>
-        </div>
         <fieldset>
           <legend>Select a gender:</legend>
           {["male", "female"].map((option) => (
@@ -73,6 +68,12 @@ class Form extends Component<Props, State> {
             </StyledLabel>
           ))}
         </fieldset>
+        <div>
+          <StyledLabel>
+            <StyledInput ref={this.checkboxConsent} type="checkbox" />
+            <div>I consent to my personal data</div>
+          </StyledLabel>
+        </div>
         <StyledButton type="submit">Submit</StyledButton>
       </StyledForm>
     );
