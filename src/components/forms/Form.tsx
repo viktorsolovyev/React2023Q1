@@ -40,7 +40,9 @@ class Form extends Component<Props, State> {
       this.inputPicture.current.files &&
       this.radioGender.current
     ) {
-      const gender = this.radioGender.current.find((el) => el.checked)?.value;
+      const gender = this.radioGender.current.find(
+        (el) => el !== null && el.checked
+      )?.value;
       this.props.addCardFunc({
         email: this.inputEmail.current?.value,
         birthday: new Date(this.inputBirthday.current?.value),
@@ -71,7 +73,10 @@ class Form extends Component<Props, State> {
       this.selectCoutry.current.value = "";
       this.checkboxConsent.current.checked = false;
       this.inputPicture.current.value = "";
-      this.radioGender.current.forEach((item) => (item.checked = false));
+      this.radioGender.current.forEach((item) => {
+        if (item !== null) item.checked = false;
+      });
+      this.radioGender.current = [];
     }
   }
 
