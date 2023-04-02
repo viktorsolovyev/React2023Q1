@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
 import { TProduct } from "types/types";
 
@@ -57,27 +57,22 @@ type CardItemProps = {
   product: TProduct;
 };
 
-class CardItem extends Component<CardItemProps> {
-  render() {
-    return (
-      <StyledItem>
-        <StyledHeader>
-          <StyledImage
-            alt={this.props.product.brand}
-            src={this.props.product.image}
-          />
-        </StyledHeader>
-        <StyledContent>
-          <StyledBrand>{this.props.product.brand}</StyledBrand>
-          <StyledTitle>{this.props.product.title}</StyledTitle>
-          <StyledDescription>
-            {this.props.product.description.slice(0, 100).trim()}...
-          </StyledDescription>
-          <StyledPrice>{this.props.product.price}$</StyledPrice>
-        </StyledContent>
-      </StyledItem>
-    );
-  }
-}
+const CardItem: FC<CardItemProps> = ({ product }) => {
+  return (
+    <StyledItem>
+      <StyledHeader>
+        <StyledImage alt={product.brand} src={product.image} />
+      </StyledHeader>
+      <StyledContent>
+        <StyledBrand>{product.brand}</StyledBrand>
+        <StyledTitle>{product.title}</StyledTitle>
+        <StyledDescription>
+          {product.description.slice(0, 100).trim()}...
+        </StyledDescription>
+        <StyledPrice>{product.price}$</StyledPrice>
+      </StyledContent>
+    </StyledItem>
+  );
+};
 
 export default CardItem;
