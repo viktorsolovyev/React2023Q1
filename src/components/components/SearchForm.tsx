@@ -1,12 +1,35 @@
-import React, { Component } from "react";
+import React, { FC, useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
-type Props = {
-  [key: string]: never;
-};
+const SearchForm: FC = () => {
+  const searchValueRef = useRef<string>();
+  const [search, setSearch] = useState(
+    localStorage.getItem("searchValue") || ""
+  );
+  searchValueRef.current = search;
 
-type State = {
-  search: string;
+  useEffect(() => {
+    return function cleanup() {
+      if (searchValueRef.current != undefined)
+        localStorage.setItem("searchValue", searchValueRef.current);
+    };
+  }, []);
+
+  function handleChange(event: React.FormEvent<HTMLInputElement>) {
+    setSearch(event.currentTarget.value);
+  }
+
+  return (
+    <StyledSearchForm action="" onSubmit={(e) => e.preventDefault()}>
+      <button type="submit"></button>
+      <StyledInput
+        value={search}
+        type="search"
+        placeholder="Find"
+        onInput={handleChange}
+      />
+    </StyledSearchForm>
+  );
 };
 
 const StyledSearchForm = styled.form`
@@ -37,39 +60,5 @@ const StyledInput = styled.input`
     background: no-repeat url("../src/assets/icons/cancel-search.svg");
   }
 `;
-
-class SearchForm extends Component<Props, State> {
-  state: State = {
-    search: "",
-  };
-  constructor(props: Props) {
-    super(props);
-    this.state.search = localStorage.getItem("searchValue") || "";
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event: React.FormEvent<HTMLInputElement>) {
-    this.setState({ search: event.currentTarget.value });
-    localStorage.setItem("searchValue", event.currentTarget.value);
-  }
-
-  componentWillUnmount() {
-    localStorage.setItem("searchValue", this.state.search);
-  }
-
-  render() {
-    return (
-      <StyledSearchForm action="" onSubmit={(e) => e.preventDefault()}>
-        <button type="submit"></button>
-        <StyledInput
-          value={this.state.search}
-          type="search"
-          placeholder="Find"
-          onInput={this.handleChange}
-        />
-      </StyledSearchForm>
-    );
-  }
-}
 
 export default SearchForm;
