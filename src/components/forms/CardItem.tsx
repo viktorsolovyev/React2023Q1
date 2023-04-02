@@ -1,6 +1,27 @@
-import React, { Component } from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
 import { TFormCard } from "types/types";
+
+type CardItemProps = {
+  card: TFormCard;
+};
+
+const CardItem: FC<CardItemProps> = ({ card }) => {
+  return (
+    <StyledItem>
+      <StyledHeader>
+        <StyledImage alt="Profile picture" src={card.picture.imageData} />
+      </StyledHeader>
+      <StyledContent>
+        <StyledH3>{card.email}</StyledH3>
+        <StyledH3>{new Intl.DateTimeFormat().format(card.birthday)}</StyledH3>
+        <StyledH3>{card.coutry}</StyledH3>
+        <StyledH3>{card.gender}</StyledH3>
+        <StyledH3>{card.consent}</StyledH3>
+      </StyledContent>
+    </StyledItem>
+  );
+};
 
 const StyledItem = styled.li`
   height: auto;
@@ -33,33 +54,5 @@ const StyledH3 = styled.h3`
   line-height: 26px;
   color: rgba(28, 28, 28, 0.4);
 `;
-
-type CardItemProps = {
-  card: TFormCard;
-};
-
-class CardItem extends Component<CardItemProps> {
-  render() {
-    return (
-      <StyledItem>
-        <StyledHeader>
-          <StyledImage
-            alt="Profile picture"
-            src={this.props.card.picture.imageData}
-          />
-        </StyledHeader>
-        <StyledContent>
-          <StyledH3>{this.props.card.email}</StyledH3>
-          <StyledH3>
-            {new Intl.DateTimeFormat().format(this.props.card.birthday)}
-          </StyledH3>
-          <StyledH3>{this.props.card.coutry}</StyledH3>
-          <StyledH3>{this.props.card.gender}</StyledH3>
-          <StyledH3>{this.props.card.consent}</StyledH3>
-        </StyledContent>
-      </StyledItem>
-    );
-  }
-}
 
 export default CardItem;
