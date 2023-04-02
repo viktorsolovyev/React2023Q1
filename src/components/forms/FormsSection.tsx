@@ -1,41 +1,22 @@
-import React, { Component } from "react";
+import React, { FC, useState } from "react";
 import styled from "styled-components";
 import Form from "./Form";
 import CardList from "../forms/CardList";
 import { TFormCard } from "types/types";
 
-type Props = {
-  [key: string]: never;
+const FormsSection: FC = () => {
+  const [cards, setCards] = useState<TFormCard[]>([]);
+  function addCardToCardList(card: TFormCard) {
+    setCards([...cards, card]);
+  }
+
+  return (
+    <StyledFormsBlock>
+      <Form addCardFunc={(card: TFormCard) => addCardToCardList(card)} />
+      <CardList cards={cards} />
+    </StyledFormsBlock>
+  );
 };
-
-type State = {
-  cards: TFormCard[];
-};
-
-class FormsSection extends Component<Props, State> {
-  state: State = {
-    cards: [],
-  };
-  constructor(props: Props) {
-    super(props);
-    this.addCardToCardList = this.addCardToCardList.bind(this);
-  }
-
-  addCardToCardList(card: TFormCard) {
-    this.setState((prevState: State) => ({
-      cards: [...prevState.cards, card],
-    }));
-  }
-
-  render() {
-    return (
-      <StyledFormsBlock>
-        <Form addCardFunc={(card: TFormCard) => this.addCardToCardList(card)} />
-        <CardList cards={this.state.cards} />
-      </StyledFormsBlock>
-    );
-  }
-}
 
 const StyledFormsBlock = styled.div`
   display: flex;
