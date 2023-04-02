@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
 import CardItem from "./CardItem";
 import products from "../../data/products";
@@ -12,16 +12,14 @@ const StyledUl = styled.ul`
   justify-content: center;
 `;
 
-class CardList extends Component {
-  render() {
-    return (
-      <StyledUl>
-        {products.map((product) => (
-          <CardItem key={product.id} product={product} />
-        ))}
-      </StyledUl>
-    );
-  }
-}
+const CardList: FC = () => {
+  return (
+    <StyledUl>
+      {products.map((product) => (
+        <CardItem key={product.id} product={product} />
+      ))}
+    </StyledUl>
+  );
+};
 
 export default CardList;
