@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
@@ -32,21 +32,19 @@ type HeaderProps = {
   label: string;
 };
 
-class Header extends Component<HeaderProps> {
-  render() {
-    return (
-      <StyledHeader>
+const Header: FC<HeaderProps> = ({ label }) => {
+  return (
+    <StyledHeader>
+      <Container>
+        <h1>{label}</h1>
         <Container>
-          <h1>{this.props.label}</h1>
-          <Container>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/about">About</NavLink>
-            <NavLink to="/forms">Forms</NavLink>
-          </Container>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/forms">Forms</NavLink>
         </Container>
-      </StyledHeader>
-    );
-  }
-}
+      </Container>
+    </StyledHeader>
+  );
+};
 
 export default Header;
