@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
 import CardItem from "./CardItem";
 import { TFormCard } from "types/types";
@@ -16,16 +16,15 @@ type CardsListProps = {
   cards: TFormCard[];
 };
 
-class CardList extends Component<CardsListProps> {
-  render() {
-    return (
-      <StyledUl>
-        {this.props.cards.map((card, index) => (
-          <CardItem key={index} card={card} />
-        ))}
-      </StyledUl>
-    );
-  }
-}
+const CardList: FC<CardsListProps> = ({ cards }) => {
+  return (
+    <StyledUl>
+      {cards.map((card: TFormCard, index: number) => (
+        <CardItem key={index} card={card} />
+      ))}
+    </StyledUl>
+  );
+};
+// }
 
 export default CardList;
