@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import styled from "styled-components";
 import { TFormCard } from "types/types";
 import countries from "../../data/countries";
@@ -23,6 +23,7 @@ type FormProps = {
 };
 
 const Form: FC<FormProps> = ({ addCardFunc }) => {
+  const [submitText, setSubmitText] = useState("Submit");
   const {
     register,
     handleSubmit,
@@ -31,6 +32,8 @@ const Form: FC<FormProps> = ({ addCardFunc }) => {
     formState: { errors, isSubmitSuccessful },
   } = useForm<TFormValues>({ mode: "onSubmit", reValidateMode: "onSubmit" });
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
+    setSubmitText("Submited!");
+    setTimeout(() => setSubmitText("Submit"), 2000);
     addCardFunc({
       email: data.email,
       birthday: new Date(data.birthday),
@@ -159,7 +162,7 @@ const Form: FC<FormProps> = ({ addCardFunc }) => {
           <StyledP role="alert">{errors.consent?.message}</StyledP>
         )}
       </div>
-      <StyledButton type="submit">Submit</StyledButton>
+      <StyledButton type="submit">{submitText}</StyledButton>
     </StyledForm>
   );
 };
