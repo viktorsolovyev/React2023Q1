@@ -5,10 +5,13 @@ import Header from "../components/Header";
 import CardList from "../components/components/CardList";
 import baseUrlAPI from "../config/config";
 import { TRickAndMortyCharacter } from "types/types";
+import Modal from "../components/Modal";
 
 const HomePage: FC = () => {
   const [characters, SetCharacters] = useState<TRickAndMortyCharacter[]>();
   const [isPending, SetIsPending] = useState<boolean>(true);
+  const [modalActive, setModalActive] = useState<boolean>(false);
+  const [currentId, setCurrentId] = useState<number>(0);
   const [search, setSearch] = useState(
     localStorage.getItem("searchValue") || ""
   );
@@ -43,8 +46,19 @@ const HomePage: FC = () => {
           getDataFromApi={getDataFromApi}
         />
         {isPending && <StyledLoading>Loading...</StyledLoading>}
-        {characters && <CardList characters={characters} />}
+        {characters && (
+          <CardList
+            characters={characters}
+            setCurrentId={setCurrentId}
+            setModalActive={setModalActive}
+          />
+        )}
       </StyledHomePage>
+      <Modal
+        id={currentId}
+        modalActive={modalActive}
+        setModalActive={setModalActive}
+      ></Modal>
     </>
   );
 };

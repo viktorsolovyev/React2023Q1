@@ -46,6 +46,7 @@ const StyledItem = styled.li`
   border-radius: 20px;
   background-color: #fff;
   box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.05);
+  list-style-type: none;
 `;
 
 const StyledHeader = styled.div`
