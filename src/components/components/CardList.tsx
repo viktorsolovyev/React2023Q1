@@ -1,7 +1,8 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import styled from "styled-components";
 import CardItem from "./CardItem";
-import products from "../../data/products";
+import { TRickAndMortyCharacter } from "types/types";
+import baseUrlAPI from "../../config/config";
 
 const StyledUl = styled.ul`
   margin-top: 20px;
@@ -13,11 +14,23 @@ const StyledUl = styled.ul`
 `;
 
 const CardList: FC = () => {
+  const [characters, SetCharacters] = useState<TRickAndMortyCharacter[]>();
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch(baseUrlAPI + "character");
+      const data = await response.json();
+      SetCharacters(data.results);
+    }
+    fetchData();
+  }, []);
+
   return (
     <StyledUl>
-      {products.map((product) => (
-        <CardItem key={product.id} product={product} />
-      ))}
+      {characters &&
+        characters.map((character) => (
+          <CardItem key={character.id} character={character} />
+        ))}
     </StyledUl>
   );
 };
