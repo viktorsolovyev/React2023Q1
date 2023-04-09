@@ -20,7 +20,7 @@ const CardList: FC<CardListProps> = ({ characters }) => {
   return (
     <StyledUl>
       {characters.map((character) => (
-        <CardItem key={character.id} character={character} />
+        <CardItem key={character.id} character={character} fullInfo={false} />
       ))}
     </StyledUl>
   );

@@ -4,9 +4,14 @@ import styled from "styled-components";
 type SearchFormProps = {
   search: string;
   setSearch: (value: string) => void;
+  getDataFromApi: () => void;
 };
 
-const SearchForm: FC<SearchFormProps> = ({ search, setSearch }) => {
+const SearchForm: FC<SearchFormProps> = ({
+  search,
+  setSearch,
+  getDataFromApi,
+}) => {
   const searchValueRef = useRef<string>();
   searchValueRef.current = search;
 
@@ -23,6 +28,7 @@ const SearchForm: FC<SearchFormProps> = ({ search, setSearch }) => {
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    getDataFromApi();
   }
 
   return (

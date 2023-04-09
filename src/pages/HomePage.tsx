@@ -6,6 +6,49 @@ import CardList from "../components/components/CardList";
 import baseUrlAPI from "../config/config";
 import { TRickAndMortyCharacter } from "types/types";
 
+const HomePage: FC = () => {
+  const [characters, SetCharacters] = useState<TRickAndMortyCharacter[]>();
+  const [isPending, SetIsPending] = useState<boolean>(true);
+  const [search, setSearch] = useState(
+    localStorage.getItem("searchValue") || ""
+  );
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch(
+        `${baseUrlAPI}character/?name=${
+          localStorage.getItem("searchValue") || ""
+        }`
+      );
+      const data = await response.json();
+      SetCharacters(data.results);
+      SetIsPending(false);
+    }
+    fetchData();
+  }, []);
+
+  async function getDataFromApi() {
+    SetIsPending(true);
+    const response = await fetch(`${baseUrlAPI}character/?name=${search}`);
+    const data = await response.json();
+    SetCharacters(data.results);
+    SetIsPending(false);
+  }
+  return (
+    <>
+      <Header label="Home" />
+      <StyledHomePage>
+        <SearchForm
+          search={search}
+          setSearch={setSearch}
+          getDataFromApi={getDataFromApi}
+        />
+        {isPending && <StyledLoading>Loading...</StyledLoading>}
+        {characters && <CardList characters={characters} />}
+      </StyledHomePage>
+    </>
+  );
+};
+
 const StyledHomePage = styled.div`
   display: flex;
   flex-direction: column;
@@ -20,29 +63,10 @@ const StyledHomePage = styled.div`
   justify-content: center;
 `;
 
-const HomePage: FC = () => {
-  const [characters, SetCharacters] = useState<TRickAndMortyCharacter[]>();
-  const [search, setSearch] = useState(
-    localStorage.getItem("searchValue") || ""
-  );
-  useEffect(() => {
-    async function fetchData() {
-      const response = await fetch(baseUrlAPI + "character");
-      const data = await response.json();
-      SetCharacters(data.results);
-    }
-    fetchData();
-  }, []);
-
-  return (
-    <>
-      <Header label="Home" />
-      <StyledHomePage>
-        <SearchForm search={search} setSearch={setSearch} />
-        {characters && <CardList characters={characters} />}
-      </StyledHomePage>
-    </>
-  );
-};
+const StyledLoading = styled.div`
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+`;
 
 export default HomePage;

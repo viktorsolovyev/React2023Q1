@@ -4,9 +4,10 @@ import { TRickAndMortyCharacter } from "types/types";
 
 type CardItemProps = {
   character: TRickAndMortyCharacter;
+  fullInfo: boolean;
 };
 
-const CardItem: FC<CardItemProps> = ({ character }) => {
+const CardItem: FC<CardItemProps> = ({ character, fullInfo }) => {
   return (
     <StyledItem>
       <StyledHeader>
@@ -16,18 +17,22 @@ const CardItem: FC<CardItemProps> = ({ character }) => {
         <StyledInfo>
           <span>Name:</span> {character.name}
         </StyledInfo>
-        <StyledInfo>
-          <span>Gender:</span> {character.gender}
-        </StyledInfo>
-        <StyledInfo>
-          <span>Species:</span> {character.species}
-        </StyledInfo>
-        <StyledInfo>
-          <span>Status:</span> {character.status}
-        </StyledInfo>
-        <StyledInfo>
-          <span>Origin:</span> {character.origin.name}
-        </StyledInfo>
+        {fullInfo && (
+          <>
+            <StyledInfo>
+              <span>Gender:</span> {character.gender}
+            </StyledInfo>
+            <StyledInfo>
+              <span>Species:</span> {character.species}
+            </StyledInfo>
+            <StyledInfo>
+              <span>Status:</span> {character.status}
+            </StyledInfo>
+            <StyledInfo>
+              <span>Origin:</span> {character.origin.name}
+            </StyledInfo>
+          </>
+        )}
       </StyledContent>
     </StyledItem>
   );
