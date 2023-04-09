@@ -22,6 +22,9 @@ const StyledHomePage = styled.div`
 
 const HomePage: FC = () => {
   const [characters, SetCharacters] = useState<TRickAndMortyCharacter[]>();
+  const [search, setSearch] = useState(
+    localStorage.getItem("searchValue") || ""
+  );
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(baseUrlAPI + "character");
@@ -35,7 +38,7 @@ const HomePage: FC = () => {
     <>
       <Header label="Home" />
       <StyledHomePage>
-        <SearchForm />
+        <SearchForm search={search} setSearch={setSearch} />
         {characters && <CardList characters={characters} />}
       </StyledHomePage>
     </>

@@ -1,11 +1,13 @@
-import React, { FC, useState, useEffect, useRef } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import styled from "styled-components";
 
-const SearchForm: FC = () => {
+type SearchFormProps = {
+  search: string;
+  setSearch: (value: string) => void;
+};
+
+const SearchForm: FC<SearchFormProps> = ({ search, setSearch }) => {
   const searchValueRef = useRef<string>();
-  const [search, setSearch] = useState(
-    localStorage.getItem("searchValue") || ""
-  );
   searchValueRef.current = search;
 
   useEffect(() => {
@@ -19,8 +21,12 @@ const SearchForm: FC = () => {
     setSearch(event.currentTarget.value);
   }
 
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+  }
+
   return (
-    <StyledSearchForm action="" onSubmit={(e) => e.preventDefault()}>
+    <StyledSearchForm action="" onSubmit={handleSubmit}>
       <button type="submit"></button>
       <StyledInput
         value={search}
