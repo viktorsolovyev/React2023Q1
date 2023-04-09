@@ -1,8 +1,10 @@
 import SearchForm from "../components/components/SearchForm";
-import React from "react";
+import React, { FC, useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import CardList from "../components/components/CardList";
+import baseUrlAPI from "../config/config";
+import { TRickAndMortyCharacter } from "types/types";
 
 const StyledHomePage = styled.div`
   display: flex;
@@ -18,13 +20,23 @@ const StyledHomePage = styled.div`
   justify-content: center;
 `;
 
-const HomePage = () => {
+const HomePage: FC = () => {
+  const [characters, SetCharacters] = useState<TRickAndMortyCharacter[]>();
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch(baseUrlAPI + "character");
+      const data = await response.json();
+      SetCharacters(data.results);
+    }
+    fetchData();
+  }, []);
+
   return (
     <>
       <Header label="Home" />
       <StyledHomePage>
         <SearchForm />
-        <CardList />
+        {characters && <CardList characters={characters} />}
       </StyledHomePage>
     </>
   );
