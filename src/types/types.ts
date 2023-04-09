@@ -15,7 +15,7 @@ export type TCountry = {
 export type TFormCard = {
   email: string;
   birthday: Date;
-  coutry: string;
+  country: string;
   consent: boolean;
   gender: string;
   picture: { imageType: string; imageData: string };

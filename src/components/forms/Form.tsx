@@ -12,7 +12,7 @@ enum GenderEnum {
 type TFormValues = {
   email: string;
   birthday: string;
-  coutry: string;
+  country: string;
   consent: boolean;
   gender: GenderEnum;
   picture: FileList;
@@ -37,7 +37,7 @@ const Form: FC<FormProps> = ({ addCardFunc }) => {
     addCardFunc({
       email: data.email,
       birthday: new Date(data.birthday),
-      coutry: data.coutry,
+      country: data.country,
       consent: data.consent,
       gender: data.gender,
       picture: {
@@ -90,11 +90,11 @@ const Form: FC<FormProps> = ({ addCardFunc }) => {
         )}
       </div>
       <div>
-        <h6>Coutry</h6>
+        <h6>Country</h6>
         <StyledSelect
           defaultValue=""
-          {...register("coutry", { required: "Coutry is required" })}
-          aria-invalid={errors.coutry ? "true" : "false"}
+          {...register("country", { required: "Country is required" })}
+          aria-invalid={errors.country ? "true" : "false"}
         >
           <option value="">----------</option>
           {countries.map((country, index) => (
@@ -103,8 +103,8 @@ const Form: FC<FormProps> = ({ addCardFunc }) => {
             </option>
           ))}
         </StyledSelect>
-        {errors.coutry && (
-          <StyledP role="alert">{errors.coutry?.message}</StyledP>
+        {errors.country && (
+          <StyledP role="alert">{errors.country?.message}</StyledP>
         )}
       </div>
       <fieldset>

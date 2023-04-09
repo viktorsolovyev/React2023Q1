@@ -28,4 +28,26 @@ describe("Form", () => {
     expect(elements[1]).toBeVisible();
     expect(elements[1]).toHaveTextContent("Birthday");
   });
+
+  it("Renders Country", () => {
+    render(
+      <BrowserRouter>
+        <Form addCardFunc={addCardFunc} />
+      </BrowserRouter>
+    );
+    const elements = screen.getAllByRole("heading", { level: 6 });
+    expect(elements[2]).toBeVisible();
+    expect(elements[2]).toHaveTextContent("Country");
+  });
+
+  it("Renders picture", () => {
+    render(
+      <BrowserRouter>
+        <Form addCardFunc={addCardFunc} />
+      </BrowserRouter>
+    );
+    const elements = screen.getAllByRole("heading", { level: 6 });
+    expect(elements[3]).toBeVisible();
+    expect(elements[3]).toHaveTextContent("picture");
+  });
 });

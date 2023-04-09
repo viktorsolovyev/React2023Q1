@@ -9,7 +9,7 @@ describe("CardItem", () => {
   const card: TFormCard = {
     email: "email@gmail.com",
     birthday: new Date(),
-    coutry: "Italy",
+    country: "Italy",
     consent: true,
     gender: "Male",
     picture: {
