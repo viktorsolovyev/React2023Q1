@@ -10,6 +10,21 @@ type ModalProps = {
   setModalActive: (value: boolean) => void;
 };
 
+const defaultCharacter = {
+  id: 0,
+  name: "",
+  status: "",
+  species: "",
+  type: "",
+  gender: "",
+  origin: { name: "", url: "" },
+  location: { name: "", url: "" },
+  image: "",
+  episode: [],
+  url: "",
+  created: "",
+};
+
 const Modal: FC<ModalProps> = ({ id, modalActive, setModalActive }) => {
   const [character, SetCharacter] = useState<TRickAndMortyCharacter>();
   useEffect(() => {
@@ -20,24 +35,44 @@ const Modal: FC<ModalProps> = ({ id, modalActive, setModalActive }) => {
         SetCharacter(data);
       }
       fetchData();
+    } else {
+      SetCharacter(defaultCharacter);
     }
   }, [id]);
 
+  const closeModal = (
+    event: React.MouseEvent<HTMLButtonElement | HTMLDivElement>
+  ) => {
+    event.preventDefault();
+    setModalActive(false);
+    SetCharacter(defaultCharacter);
+  };
+
   return (
     <>
-      {modalActive ? (
-        <StyledModalActive onClick={() => setModalActive(false)}>
-          <StyledModalContent onClick={(e) => e.stopPropagation()}>
-            <StyledCloseButton onClick={() => setModalActive(false)} />
-            {character && <CardItem character={character} fullInfo={true} />}
-          </StyledModalContent>
-        </StyledModalActive>
+      {character && character.id === 0 ? (
+        "Loading..."
       ) : (
-        <StyledModal onClick={() => setModalActive(false)}>
-          <StyledModalContent onClick={(e) => e.stopPropagation()}>
-            {character && <CardItem character={character} fullInfo={true} />}
-          </StyledModalContent>
-        </StyledModal>
+        <>
+          {modalActive ? (
+            <StyledModalActive onClick={closeModal}>
+              <StyledModalContent onClick={(e) => e.stopPropagation()}>
+                <StyledCloseButton onClick={closeModal} />
+                {character && (
+                  <CardItem character={character} fullInfo={true} />
+                )}
+              </StyledModalContent>
+            </StyledModalActive>
+          ) : (
+            <StyledModal onClick={closeModal}>
+              <StyledModalContent onClick={(e) => e.stopPropagation()}>
+                {character && (
+                  <CardItem character={character} fullInfo={true} />
+                )}
+              </StyledModalContent>
+            </StyledModal>
+          )}
+        </>
       )}
     </>
   );
