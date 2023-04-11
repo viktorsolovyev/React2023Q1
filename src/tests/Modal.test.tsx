@@ -11,6 +11,6 @@ describe("Modal", () => {
         <Modal id={0} modalActive={true} setModalActive={vi.fn()}></Modal>
       </BrowserRouter>
     );
-    expect(screen.getByText(/Loading/i)).toHaveTextContent("Loading");
+    expect(screen.getByText(/No data/i)).toHaveTextContent("No data");
   });
 });

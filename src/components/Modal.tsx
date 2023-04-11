@@ -72,6 +72,7 @@ const Modal: FC<ModalProps> = ({ id, modalActive, setModalActive }) => {
           )}
         </>
       )}
+      {modalActive && character && character.id === 0 && <>No data</>}
     </>
   );
 };
