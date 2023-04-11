@@ -38,14 +38,14 @@ const Modal: FC<ModalProps> = ({ id, modalActive, setModalActive }) => {
     } else {
       SetCharacter(defaultCharacter);
     }
-  }, [id]);
+  }, [id, modalActive]);
 
   const closeModal = (
     event: React.MouseEvent<HTMLButtonElement | HTMLDivElement>
   ) => {
     event.preventDefault();
-    setModalActive(false);
     SetCharacter(defaultCharacter);
+    setModalActive(false);
   };
 
   return (
@@ -87,9 +87,6 @@ const StyledModal = styled.div`
   align-items: center;
   justify-content: center;
   transform: scale(0);
-  :active {
-    transform: scale(1);
-  }
 `;
 
 const StyledModalActive = styled.div`
