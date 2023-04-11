@@ -33,7 +33,11 @@ const HomePage: FC = () => {
     SetIsPending(true);
     const response = await fetch(`${baseUrlAPI}character/?name=${search}`);
     const data = await response.json();
-    SetCharacters(data.results);
+    if (data.error) {
+      SetCharacters([]);
+    } else {
+      SetCharacters(data.results);
+    }
     SetIsPending(false);
   }
   return (

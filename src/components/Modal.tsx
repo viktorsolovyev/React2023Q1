@@ -50,9 +50,7 @@ const Modal: FC<ModalProps> = ({ id, modalActive, setModalActive }) => {
 
   return (
     <>
-      {character && character.id === 0 ? (
-        "Loading..."
-      ) : (
+      {character && character.id > 0 && (
         <>
           {modalActive ? (
             <StyledModalActive onClick={closeModal}>
