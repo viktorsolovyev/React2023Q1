@@ -28,6 +28,10 @@ const SearchForm: FC<SearchFormProps> = ({
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (searchValueRef.current != undefined) {
+      localStorage.setItem("searchValue", searchValueRef.current);
+      setSearch(searchValueRef.current);
+    }
     getDataFromApi();
   }
 
