@@ -43,7 +43,6 @@ const Modal: FC<ModalProps> = ({ id, modalActive, setModalActive }) => {
     event: React.MouseEvent<HTMLButtonElement | HTMLDivElement>
   ) => {
     event.preventDefault();
-    // SetCharacter(defaultCharacter);
     setModalActive(false);
   };
 

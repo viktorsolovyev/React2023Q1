@@ -5,7 +5,7 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
 describe("Modal", () => {
-  it("Renders modal with label Home", () => {
+  it("Renders modal with label No data", () => {
     render(
       <BrowserRouter>
         <Modal id={0} modalActive={true} setModalActive={vi.fn()}></Modal>

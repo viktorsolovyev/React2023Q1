@@ -35,3 +35,13 @@ export type TRickAndMortyCharacter = {
   url: string;
   created: string;
 };
+
+export type TRickAndMortyCharacterResponse = {
+  info: {
+    count: number;
+    pages: number;
+    next: string | null;
+    prev: string | null;
+  };
+  results: TRickAndMortyCharacter[];
+};
