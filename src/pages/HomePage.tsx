@@ -3,9 +3,9 @@ import React, { FC, useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import CardList from "../components/components/CardList";
-import baseUrlAPI from "../config/config";
 import { TRickAndMortyCharacter } from "types/types";
 import Modal from "../components/Modal";
+import { fetchCharactersByName } from "../services/rickandmorty/rickandmorty.service";
 
 const HomePage: FC = () => {
   const [characters, SetCharacters] = useState<TRickAndMortyCharacter[]>();
@@ -17,12 +17,9 @@ const HomePage: FC = () => {
   );
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(
-        `${baseUrlAPI}character/?name=${
-          localStorage.getItem("searchValue") || ""
-        }`
+      const data = await fetchCharactersByName(
+        localStorage.getItem("searchValue") || ""
       );
-      const data = await response.json();
       SetCharacters(data.results);
       SetIsPending(false);
     }
@@ -31,8 +28,7 @@ const HomePage: FC = () => {
 
   async function getDataFromApi() {
     SetIsPending(true);
-    const response = await fetch(`${baseUrlAPI}character/?name=${search}`);
-    const data = await response.json();
+    const data = await fetchCharactersByName(search);
     if (data.error) {
       SetCharacters([]);
     } else {

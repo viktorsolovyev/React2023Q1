@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from "react";
 import styled from "styled-components";
-import baseUrlAPI from "../config/config";
 import { TRickAndMortyCharacter } from "types/types";
 import CardItem from "./components/CardItem";
+import { fetchCharacterById } from "../services/rickandmorty/rickandmorty.service";
 
 type ModalProps = {
   id: number;
@@ -28,12 +28,11 @@ const defaultCharacter = {
 const Modal: FC<ModalProps> = ({ id, modalActive, setModalActive }) => {
   const [character, SetCharacter] = useState<TRickAndMortyCharacter>();
   useEffect(() => {
+    async function fetchData() {
+      const data = await fetchCharacterById(id);
+      SetCharacter(data);
+    }
     if (id > 0) {
-      async function fetchData() {
-        const response = await fetch(`${baseUrlAPI}character/${id}`);
-        const data = await response.json();
-        SetCharacter(data);
-      }
       fetchData();
     } else {
       SetCharacter(defaultCharacter);
@@ -44,7 +43,7 @@ const Modal: FC<ModalProps> = ({ id, modalActive, setModalActive }) => {
     event: React.MouseEvent<HTMLButtonElement | HTMLDivElement>
   ) => {
     event.preventDefault();
-    SetCharacter(defaultCharacter);
+    // SetCharacter(defaultCharacter);
     setModalActive(false);
   };
 
