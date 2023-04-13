@@ -620,4 +620,13 @@ export const handlers = [
   rest.get(`${BASE_URL}character/`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(characters));
   }),
+  rest.get(`${BASE_URL}character/:id`, (req, res, ctx) => {
+    const characterId = +req.params.id;
+    if (characterId > 0)
+      return res(
+        ctx.status(200),
+        ctx.json(characters.results[characterId - 1])
+      );
+    return res(ctx.status(200), ctx.json(characters));
+  }),
 ];
