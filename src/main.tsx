@@ -12,6 +12,8 @@ import AboutPage from "./pages/AboutPage";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import FormsPage from "./pages/FormsPage";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 const router = createBrowserRouter([
   {
@@ -42,5 +44,9 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <RouterProvider router={router} />
+  <>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  </>
 );

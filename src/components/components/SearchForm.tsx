@@ -1,48 +1,34 @@
-import React, { FC, useEffect, useRef } from "react";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { getSearch, changeSearch } from "../../store/reducers/searchSlice";
+import React, { FC } from "react";
 import styled from "styled-components";
+import { useForm, SubmitHandler } from "react-hook-form";
 
-type SearchFormProps = {
+type TFormValues = {
   search: string;
-  setSearch: (value: string) => void;
-  getDataFromApi: () => void;
 };
 
-const SearchForm: FC<SearchFormProps> = ({
-  search,
-  setSearch,
-  getDataFromApi,
-}) => {
-  const searchValueRef = useRef<string>();
-  searchValueRef.current = search;
+const SearchForm: FC = () => {
+  const { register, handleSubmit } = useForm<TFormValues>({
+    mode: "onSubmit",
+    reValidateMode: "onSubmit",
+  });
 
-  useEffect(() => {
-    return function cleanup() {
-      if (searchValueRef.current != undefined)
-        localStorage.setItem("searchValue", searchValueRef.current);
-    };
-  }, []);
+  const onSubmit: SubmitHandler<TFormValues> = async (data) => {
+    if (data.search !== search) dispatch(changeSearch(data.search));
+  };
 
-  function handleChange(event: React.FormEvent<HTMLInputElement>) {
-    setSearch(event.currentTarget.value);
-  }
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (searchValueRef.current != undefined) {
-      localStorage.setItem("searchValue", searchValueRef.current);
-      setSearch(searchValueRef.current);
-    }
-    getDataFromApi();
-  }
+  const dispatch = useAppDispatch();
+  const search = useAppSelector(getSearch);
 
   return (
-    <StyledSearchForm action="" onSubmit={handleSubmit}>
+    <StyledSearchForm action="" onSubmit={handleSubmit(onSubmit)}>
       <button type="submit"></button>
       <StyledInput
-        value={search}
+        {...register("search")}
         type="search"
         placeholder="Find"
-        onInput={handleChange}
+        defaultValue={search}
       />
     </StyledSearchForm>
   );
