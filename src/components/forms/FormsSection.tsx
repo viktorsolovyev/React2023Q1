@@ -1,19 +1,13 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
 import Form from "./Form";
 import CardList from "../forms/CardList";
-import { TFormCard } from "types/types";
 
 const FormsSection: FC = () => {
-  const [cards, setCards] = useState<TFormCard[]>([]);
-  function addCardToCardList(card: TFormCard) {
-    setCards([...cards, card]);
-  }
-
   return (
     <StyledFormsBlock>
-      <Form addCardFunc={(card: TFormCard) => addCardToCardList(card)} />
-      <CardList cards={cards} />
+      <Form />
+      <CardList />
     </StyledFormsBlock>
   );
 };

@@ -1,8 +1,9 @@
 import React, { FC, useEffect, useState } from "react";
 import styled from "styled-components";
-import { TFormCard } from "types/types";
 import countries from "../../data/countries";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useAppSelector, useAppDispatch } from "../../hooks/redux";
+import { changeCards, getСards } from "../../store/reducers/CardsSlice";
 
 enum GenderEnum {
   female = "Female",
@@ -18,11 +19,9 @@ type TFormValues = {
   picture: FileList;
 };
 
-type FormProps = {
-  addCardFunc: (card: TFormCard) => void;
-};
-
-const Form: FC<FormProps> = ({ addCardFunc }) => {
+const Form: FC = () => {
+  const dispatch = useAppDispatch();
+  const cards = useAppSelector(getСards);
   const [submitText, setSubmitText] = useState("Submit");
   const {
     register,
@@ -34,17 +33,22 @@ const Form: FC<FormProps> = ({ addCardFunc }) => {
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
     setSubmitText("Submited!");
     setTimeout(() => setSubmitText("Submit"), 2000);
-    addCardFunc({
-      email: data.email,
-      birthday: new Date(data.birthday),
-      country: data.country,
-      consent: data.consent,
-      gender: data.gender,
-      picture: {
-        imageType: data.picture[0].type,
-        imageData: URL.createObjectURL(data.picture[0]),
-      },
-    });
+    dispatch(
+      changeCards([
+        ...cards,
+        {
+          email: data.email,
+          birthday: new Date(data.birthday),
+          country: data.country,
+          consent: data.consent,
+          gender: data.gender,
+          picture: {
+            imageType: data.picture[0].type,
+            imageData: URL.createObjectURL(data.picture[0]),
+          },
+        },
+      ])
+    );
   };
 
   useEffect(() => {

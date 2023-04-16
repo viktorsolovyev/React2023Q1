@@ -2,6 +2,8 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import CardItem from "./CardItem";
 import { TFormCard } from "types/types";
+import { useAppSelector } from "../../hooks/redux";
+import { getСards } from "../../store/reducers/CardsSlice";
 
 const StyledUl = styled.ul`
   margin-top: 20px;
@@ -12,11 +14,8 @@ const StyledUl = styled.ul`
   justify-content: center;
 `;
 
-type CardsListProps = {
-  cards: TFormCard[];
-};
-
-const CardList: FC<CardsListProps> = ({ cards }) => {
+const CardList: FC = () => {
+  const cards = useAppSelector(getСards);
   return (
     <StyledUl>
       {cards.map((card: TFormCard, index: number) => (
