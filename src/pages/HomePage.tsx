@@ -3,14 +3,18 @@ import React, { FC, useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import CardList from "../components/components/CardList";
-import { TRickAndMortyCharacter } from "types/types";
 import Modal from "../components/Modal";
 import { fetchCharactersByName } from "../services/rickandmorty/rickandmorty.service";
-import { useAppSelector } from "../hooks/redux";
+import { useAppSelector, useAppDispatch } from "../hooks/redux";
 import { getSearch } from "../store/reducers/searchSlice";
+import {
+  getСharacters,
+  changeСharacters,
+} from "../store/reducers/CharactersSlice";
 
 const HomePage: FC = () => {
-  const [characters, SetCharacters] = useState<TRickAndMortyCharacter[]>();
+  const dispatch = useAppDispatch();
+  const characters = useAppSelector(getСharacters);
   const [isPending, SetIsPending] = useState<boolean>(true);
   const [modalActive, setModalActive] = useState<boolean>(false);
   const [currentId, setCurrentId] = useState<number>(0);
@@ -21,14 +25,14 @@ const HomePage: FC = () => {
       SetIsPending(true);
       const data = await fetchCharactersByName(search);
       if (data.error) {
-        SetCharacters([]);
+        dispatch(changeСharacters([]));
       } else {
-        SetCharacters(data.results);
+        dispatch(changeСharacters(data.results));
       }
       SetIsPending(false);
     }
     fetchData();
-  }, [search]);
+  }, [search, dispatch]);
 
   return (
     <>
