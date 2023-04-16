@@ -1,0 +1,18 @@
+import React from "react";
+import { describe, it } from "vitest";
+import { render, screen } from "@testing-library/react";
+import HomePage from "../../pages/HomePage";
+import { BrowserRouter } from "react-router-dom";
+
+describe("HomePage", () => {
+  it("HomePage", async () => {
+    render(
+      <BrowserRouter>
+        <HomePage />
+      </BrowserRouter>
+    );
+    const elements = screen.getAllByText(/Home/i);
+    expect(elements[1]).toBeVisible();
+    expect(elements[1]).toHaveTextContent("Home");
+  });
+});
