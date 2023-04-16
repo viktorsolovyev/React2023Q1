@@ -1,8 +1,7 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
-import { TRickAndMortyCharacter } from "types/types";
 import CardItem from "./components/CardItem";
-import { fetchCharacterById } from "../services/rickandmorty/rickandmorty.service";
+import { rickAndMortyApi } from "../services/rickandmorty/rickandmorty.service";
 
 type ModalProps = {
   id: number;
@@ -10,34 +9,8 @@ type ModalProps = {
   setModalActive: (value: boolean) => void;
 };
 
-const defaultCharacter = {
-  id: 0,
-  name: "",
-  status: "",
-  species: "",
-  type: "",
-  gender: "",
-  origin: { name: "", url: "" },
-  location: { name: "", url: "" },
-  image: "",
-  episode: [],
-  url: "",
-  created: "",
-};
-
 const Modal: FC<ModalProps> = ({ id, modalActive, setModalActive }) => {
-  const [character, SetCharacter] = useState<TRickAndMortyCharacter>();
-  useEffect(() => {
-    async function fetchData() {
-      const data = await fetchCharacterById(id);
-      SetCharacter(data);
-    }
-    if (id > 0) {
-      fetchData();
-    } else {
-      SetCharacter(defaultCharacter);
-    }
-  }, [id, modalActive]);
+  const { data, error } = rickAndMortyApi.useGetCharactersByIdQuery(id);
 
   const closeModal = (
     event: React.MouseEvent<HTMLButtonElement | HTMLDivElement>
@@ -48,29 +21,27 @@ const Modal: FC<ModalProps> = ({ id, modalActive, setModalActive }) => {
 
   return (
     <>
-      {character && character.id > 0 && (
+      {data && !error && (
         <>
           {modalActive ? (
             <StyledModalActive onClick={closeModal}>
               <StyledModalContent onClick={(e) => e.stopPropagation()}>
                 <StyledCloseButton onClick={closeModal} />
-                {character && (
-                  <CardItem character={character} fullInfo={true} />
-                )}
+                {data && <CardItem character={data} fullInfo={true} />}
               </StyledModalContent>
             </StyledModalActive>
           ) : (
             <StyledModal onClick={closeModal}>
               <StyledModalContent onClick={(e) => e.stopPropagation()}>
-                {character && (
-                  <CardItem character={character} fullInfo={true} />
+                {data && !error && (
+                  <CardItem character={data} fullInfo={true} />
                 )}
               </StyledModalContent>
             </StyledModal>
           )}
         </>
       )}
-      {modalActive && character && character.id === 0 && <>No data</>}
+      {modalActive && error && <>No data</>}
     </>
   );
 };

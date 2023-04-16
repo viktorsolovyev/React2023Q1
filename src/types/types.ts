@@ -44,4 +44,5 @@ export type TRickAndMortyCharacterResponse = {
     prev: string | null;
   };
   results: TRickAndMortyCharacter[];
+  error: string | null;
 };

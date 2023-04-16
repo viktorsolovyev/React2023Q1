@@ -1,48 +1,30 @@
 import SearchForm from "../components/components/SearchForm";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import CardList from "../components/components/CardList";
 import Modal from "../components/Modal";
-import { fetchCharactersByName } from "../services/rickandmorty/rickandmorty.service";
-import { useAppSelector, useAppDispatch } from "../hooks/redux";
+import { rickAndMortyApi } from "../services/rickandmorty/rickandmorty.service";
+import { useAppSelector } from "../hooks/redux";
 import { getSearch } from "../store/reducers/searchSlice";
-import {
-  getСharacters,
-  changeСharacters,
-} from "../store/reducers/CharactersSlice";
 
 const HomePage: FC = () => {
-  const dispatch = useAppDispatch();
-  const characters = useAppSelector(getСharacters);
-  const [isPending, SetIsPending] = useState<boolean>(true);
   const [modalActive, setModalActive] = useState<boolean>(false);
   const [currentId, setCurrentId] = useState<number>(0);
 
   const search = useAppSelector(getSearch);
-  useEffect(() => {
-    async function fetchData() {
-      SetIsPending(true);
-      const data = await fetchCharactersByName(search);
-      if (data.error) {
-        dispatch(changeСharacters([]));
-      } else {
-        dispatch(changeСharacters(data.results));
-      }
-      SetIsPending(false);
-    }
-    fetchData();
-  }, [search, dispatch]);
-
+  const { data, error, isLoading } =
+    rickAndMortyApi.useGetCharactersByNameQuery(search);
   return (
     <>
       <Header label="Home" />
       <StyledHomePage>
         <SearchForm />
-        {isPending && <StyledLoading>Loading...</StyledLoading>}
-        {characters && (
+        {isLoading && <StyledLoading>Loading...</StyledLoading>}
+        {error && <StyledLoading>There is nothing here</StyledLoading>}
+        {data && !error && (
           <CardList
-            characters={characters}
+            characters={data.results}
             setCurrentId={setCurrentId}
             setModalActive={setModalActive}
           />
