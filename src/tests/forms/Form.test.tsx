@@ -1,17 +1,20 @@
-import { describe, it, vi } from "vitest";
+import { describe, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import Form from "../../components/forms/Form";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { setupStore } from "../../store/store";
 
+const store = setupStore();
 describe("Form", () => {
-  const addCardFunc = vi.fn();
-
   it("Renders Email", () => {
     render(
-      <BrowserRouter>
-        <Form addCardFunc={addCardFunc} />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Form />
+        </BrowserRouter>
+      </Provider>
     );
     const elements = screen.getAllByRole("heading", { level: 6 });
     expect(elements[0]).toBeVisible();
@@ -20,9 +23,11 @@ describe("Form", () => {
 
   it("Renders Birthday", () => {
     render(
-      <BrowserRouter>
-        <Form addCardFunc={addCardFunc} />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Form />
+        </BrowserRouter>
+      </Provider>
     );
     const elements = screen.getAllByRole("heading", { level: 6 });
     expect(elements[1]).toBeVisible();
@@ -31,9 +36,11 @@ describe("Form", () => {
 
   it("Renders Country", () => {
     render(
-      <BrowserRouter>
-        <Form addCardFunc={addCardFunc} />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Form />
+        </BrowserRouter>
+      </Provider>
     );
     const elements = screen.getAllByRole("heading", { level: 6 });
     expect(elements[2]).toBeVisible();
@@ -42,9 +49,11 @@ describe("Form", () => {
 
   it("Renders picture", () => {
     render(
-      <BrowserRouter>
-        <Form addCardFunc={addCardFunc} />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Form />
+        </BrowserRouter>
+      </Provider>
     );
     const elements = screen.getAllByRole("heading", { level: 6 });
     expect(elements[3]).toBeVisible();

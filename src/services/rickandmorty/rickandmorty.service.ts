@@ -1,4 +1,4 @@
-import fetch from "cross-fetch";
+import "whatwg-fetch";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
   TRickAndMortyCharacter,
@@ -6,14 +6,6 @@ import {
 } from "types/types";
 
 export const BASE_URL = "https://rickandmortyapi.com/api/";
-
-export async function fetchCharacterById(id: number) {
-  return (await fetch(`${BASE_URL}character/${id}`)).json();
-}
-
-export async function fetchCharactersByName(name: string) {
-  return (await fetch(`${BASE_URL}character/?name=${name}`)).json();
-}
 
 export const rickAndMortyApi = createApi({
   reducerPath: "rickAndMortyApi",

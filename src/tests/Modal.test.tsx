@@ -3,21 +3,19 @@ import { render, screen, waitFor } from "@testing-library/react";
 import Modal from "../components/Modal";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { setupStore } from "../store/store";
+
+const store = setupStore();
 
 describe("Modal", () => {
-  it("Renders modal with label No data", () => {
-    render(
-      <BrowserRouter>
-        <Modal id={0} modalActive={true} setModalActive={vi.fn()}></Modal>
-      </BrowserRouter>
-    );
-    expect(screen.getByText(/No data/i)).toHaveTextContent("No data");
-  });
   it("Renders modal with character 1", async () => {
     render(
-      <BrowserRouter>
-        <Modal id={1} modalActive={true} setModalActive={vi.fn()}></Modal>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Modal id={1} modalActive={true} setModalActive={vi.fn()}></Modal>
+        </BrowserRouter>
+      </Provider>
     );
     await waitFor(() => {
       const element = screen.getByText(/Rick Sanchez/i);

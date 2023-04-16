@@ -13,8 +13,9 @@ import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import FormsPage from "./pages/FormsPage";
 import { Provider } from "react-redux";
-import { store } from "./store/store";
+import { setupStore } from "./store/store";
 
+const store = setupStore();
 const router = createBrowserRouter([
   {
     element: <App />,

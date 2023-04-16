@@ -614,6 +614,7 @@ export const characters: TRickAndMortyCharacterResponse = {
       created: "2017-11-04T22:34:53.659Z",
     },
   ],
+  error: "",
 };
 
 export const handlers = [

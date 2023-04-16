@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { getSearch, changeSearch } from "../../store/reducers/searchSlice";
+import { getSearch, changeSearch } from "../../store/reducers/SearchSlice";
 import React, { FC } from "react";
 import styled from "styled-components";
 import { useForm, SubmitHandler } from "react-hook-form";
