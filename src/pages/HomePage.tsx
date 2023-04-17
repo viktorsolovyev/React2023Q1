@@ -10,7 +10,7 @@ import { getSearch } from "../store/reducers/SearchSlice";
 
 const HomePage: FC = () => {
   const [modalActive, setModalActive] = useState<boolean>(false);
-  const [currentId, setCurrentId] = useState<number>(0);
+  const [currentId, setCurrentId] = useState<number>(1);
 
   const search = useAppSelector(getSearch);
   const { data, error, isLoading } =
