@@ -10,7 +10,7 @@ import { setupStore } from "../../store/store";
 const cards: TFormCard[] = [
   {
     email: "email@gmail.com",
-    birthday: new Date(),
+    birthday: new Date().toString(),
     country: "Italy",
     consent: true,
     gender: "Male",
@@ -22,7 +22,7 @@ const cards: TFormCard[] = [
   },
   {
     email: "email@gmail.com",
-    birthday: new Date(),
+    birthday: new Date().toString(),
     country: "Italy",
     consent: true,
     gender: "Male",
