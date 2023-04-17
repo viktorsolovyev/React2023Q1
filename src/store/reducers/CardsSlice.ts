@@ -14,8 +14,8 @@ const cardsSlice = createSlice({
   name: "cards",
   initialState,
   reducers: {
-    changeCards(state, action: PayloadAction<TFormCard[]>) {
-      state.cards = action.payload;
+    changeCards(state, action: PayloadAction<TFormCard>) {
+      state.cards.push(action.payload);
     },
   },
 });

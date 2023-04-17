@@ -14,7 +14,9 @@ const CardItem: FC<CardItemProps> = ({ card }) => {
       </StyledHeader>
       <StyledContent>
         <StyledH3>{card.email}</StyledH3>
-        <StyledH3>{new Intl.DateTimeFormat().format(card.birthday)}</StyledH3>
+        <StyledH3>
+          {new Intl.DateTimeFormat().format(new Date(card.birthday))}
+        </StyledH3>
         <StyledH3>{card.country}</StyledH3>
         <StyledH3>{card.gender}</StyledH3>
         <StyledH3>{card.consent}</StyledH3>
