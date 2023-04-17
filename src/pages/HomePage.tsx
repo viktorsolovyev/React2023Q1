@@ -6,7 +6,7 @@ import CardList from "../components/components/CardList";
 import Modal from "../components/Modal";
 import { rickAndMortyApi } from "../services/rickandmorty/rickandmorty.service";
 import { useAppSelector } from "../hooks/redux";
-import { getSearch } from "../store/reducers/searchSlice";
+import { getSearch } from "../store/reducers/SearchSlice";
 
 const HomePage: FC = () => {
   const [modalActive, setModalActive] = useState<boolean>(false);
