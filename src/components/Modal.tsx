@@ -10,7 +10,8 @@ type ModalProps = {
 };
 
 const Modal: FC<ModalProps> = ({ id, modalActive, setModalActive }) => {
-  const { data, error } = rickAndMortyApi.useGetCharactersByIdQuery(id);
+  const { data, error, isLoading } =
+    rickAndMortyApi.useGetCharactersByIdQuery(id);
 
   const closeModal = (
     event: React.MouseEvent<HTMLButtonElement | HTMLDivElement>
@@ -26,6 +27,7 @@ const Modal: FC<ModalProps> = ({ id, modalActive, setModalActive }) => {
           {modalActive ? (
             <StyledModalActive onClick={closeModal}>
               <StyledModalContent onClick={(e) => e.stopPropagation()}>
+                {isLoading && <>Loading...</>}
                 <StyledCloseButton onClick={closeModal} />
                 {data && <CardItem character={data} fullInfo={true} />}
               </StyledModalContent>

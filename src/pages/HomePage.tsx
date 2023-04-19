@@ -30,11 +30,13 @@ const HomePage: FC = () => {
           />
         )}
       </StyledHomePage>
-      <Modal
-        id={currentId}
-        modalActive={modalActive}
-        setModalActive={setModalActive}
-      ></Modal>
+      {modalActive && (
+        <Modal
+          id={currentId}
+          modalActive={modalActive}
+          setModalActive={setModalActive}
+        ></Modal>
+      )}
     </>
   );
 };
