@@ -13,14 +13,14 @@ const HomePage: FC = () => {
   const [currentId, setCurrentId] = useState<number>(1);
 
   const search = useAppSelector(getSearch);
-  const { data, error, isLoading } =
+  const { data, error, isFetching } =
     rickAndMortyApi.useGetCharactersByNameQuery(search);
   return (
     <>
       <Header label="Home" />
       <StyledHomePage>
         <SearchForm />
-        {isLoading && <StyledLoading>Loading...</StyledLoading>}
+        {isFetching && <StyledLoading>Loading...</StyledLoading>}
         {error && <StyledLoading>There is nothing here</StyledLoading>}
         {data && !error && (
           <CardList

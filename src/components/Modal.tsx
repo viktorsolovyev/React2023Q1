@@ -10,7 +10,7 @@ type ModalProps = {
 };
 
 const Modal: FC<ModalProps> = ({ id, modalActive, setModalActive }) => {
-  const { data, error, isLoading } =
+  const { data, error, isFetching } =
     rickAndMortyApi.useGetCharactersByIdQuery(id);
 
   const closeModal = (
@@ -27,7 +27,7 @@ const Modal: FC<ModalProps> = ({ id, modalActive, setModalActive }) => {
           {modalActive ? (
             <StyledModalActive onClick={closeModal}>
               <StyledModalContent onClick={(e) => e.stopPropagation()}>
-                {isLoading && <>Loading...</>}
+                {isFetching && <>Loading...</>}
                 <StyledCloseButton onClick={closeModal} />
                 {data && <CardItem character={data} fullInfo={true} />}
               </StyledModalContent>
