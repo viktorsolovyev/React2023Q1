@@ -1,4 +1,4 @@
-import "whatwg-fetch";
+import "cross-fetch/polyfill";
 import {
   fetchBaseQuery,
   buildCreateApi,

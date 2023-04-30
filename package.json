@@ -14,6 +14,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
     "@types/react-redux": "^7.1.25",
+    "cross-fetch": "^3.1.5",
     "express": "^4.18.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -21,8 +22,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.9.0",
     "redux-persist": "^6.0.0",
-    "styled-components": "^5.3.9",
-    "whatwg-fetch": "^3.6.2"
+    "styled-components": "^5.3.9"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
