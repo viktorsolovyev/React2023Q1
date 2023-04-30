@@ -1,9 +1,19 @@
 import "whatwg-fetch";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import {
+  fetchBaseQuery,
+  buildCreateApi,
+  coreModule,
+  reactHooksModule,
+} from "@reduxjs/toolkit/query/react";
 import {
   TRickAndMortyCharacter,
   TRickAndMortyCharacterResponse,
 } from "types/types";
+
+const createApi = buildCreateApi(
+  coreModule(),
+  reactHooksModule({ unstable__sideEffectsInRender: true })
+);
 
 export const BASE_URL = "https://rickandmortyapi.com/api/";
 

@@ -8,7 +8,7 @@ import { TFormCard } from "types/types";
 describe("CardItem", () => {
   const card: TFormCard = {
     email: "email@gmail.com",
-    birthday: new Date(),
+    birthday: new Intl.DateTimeFormat().format(new Date()),
     country: "Italy",
     consent: true,
     gender: "Male",
