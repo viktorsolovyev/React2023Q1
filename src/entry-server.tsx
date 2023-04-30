@@ -3,7 +3,7 @@ import ReactDOMServer from "react-dom/server";
 import { StaticRouter } from "react-router-dom/server";
 import { Provider } from "react-redux";
 // import App from "./App";
-import HomePage from "../src/pages/HomePage";
+import HomePage from "../src/pages/HomePage/HomePage";
 import { setupStore } from "./store/store";
 import { rickAndMortyApi } from "../src/services/rickandmorty/rickandmorty.service";
 

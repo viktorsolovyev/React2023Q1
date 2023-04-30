@@ -1,0 +1,42 @@
+.modalActive {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(1);
+}
+
+.content {
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #f7f6f0;
+    position: relative;
+}
+
+.modal {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0);
+}
+
+.closeButton {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    background: no-repeat url("../src/assets/icons/cancel-search.svg");
+    position: absolute;
+    left: 95%;
+    top: 10px;
+}

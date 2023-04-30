@@ -1,6 +1,6 @@
 import { describe, it, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
-import Modal from "../components/Modal";
+import Modal from "../components/Modal/Modal";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";

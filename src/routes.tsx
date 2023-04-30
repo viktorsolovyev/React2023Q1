@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import App from "./App";
 import AboutPage from "./pages/AboutPage";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/HomePage/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import FormsPage from "./pages/FormsPage";
 

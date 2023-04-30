@@ -1,16 +1,7 @@
 import React, { FC } from "react";
-import styled from "styled-components";
-import CardItem from "./CardItem";
+import CardItem from "../CardItem/CardItem";
 import { TRickAndMortyCharacter } from "types/types";
-
-const StyledUl = styled.ul`
-  margin-top: 20px;
-  display: flex;
-  column-gap: 1.3vw;
-  flex-wrap: wrap;
-  row-gap: 25px;
-  justify-content: center;
-`;
+import classes from "./CardList.module.css";
 
 type CardListProps = {
   characters: TRickAndMortyCharacter[];
@@ -29,7 +20,7 @@ const CardList: FC<CardListProps> = ({
     setModalActive(true);
   }
   return (
-    <StyledUl>
+    <ul className={classes.cardList}>
       {characters.map((character) => (
         <a
           href=""
@@ -39,7 +30,7 @@ const CardList: FC<CardListProps> = ({
           <CardItem character={character} fullInfo={false} />
         </a>
       ))}
-    </StyledUl>
+    </ul>
   );
 };
 

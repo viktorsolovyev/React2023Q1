@@ -1,6 +1,6 @@
 import { describe, it } from "vitest";
 import { render, screen } from "@testing-library/react";
-import SearchForm from "../../components/components/SearchForm";
+import SearchForm from "../../components/components/SearchForm/SearchForm";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";

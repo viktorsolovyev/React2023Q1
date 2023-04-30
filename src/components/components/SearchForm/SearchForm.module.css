@@ -1,0 +1,30 @@
+.searchForm {
+    display: inline-flex;
+    width: 600px;
+    height: 100%;
+    align-items: center;
+}
+
+.searchInput {
+    font-size: 20px;
+    border-radius: 30px;
+    width: 100%;
+    height: 50px;
+    padding-left: 60px;
+    padding-right: 20px;
+    position: relative;
+    background: no-repeat left 20px center#FFFFFF url("../src/assets/icons/search.svg");
+}
+
+
+.searchInput::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.2);
+}
+
+.searchInput::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    background: no-repeat url("../src/assets/icons/cancel-search.svg");
+}
