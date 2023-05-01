@@ -1,25 +1,35 @@
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { getSearch, changeSearch } from "../../../store/reducers/SearchSlice";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import classes from "./SearchForm.module.css";
+import { rickAndMortyApi } from "../../../services/rickandmorty/rickandmorty.service";
 
 type TFormValues = {
   search: string;
 };
 
 const SearchForm: FC = () => {
+  const dispatch = useAppDispatch();
+  const search = useAppSelector(getSearch);
+  const [searchValue, setsearchValue] = useState(search || "");
+
+  const [trigger] =
+    rickAndMortyApi.endpoints.getCharactersByName.useLazyQuery();
+
   const { register, handleSubmit } = useForm<TFormValues>({
     mode: "onSubmit",
     reValidateMode: "onSubmit",
   });
 
-  const onSubmit: SubmitHandler<TFormValues> = async (data) => {
-    if (data.search !== search) dispatch(changeSearch(data.search));
+  const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
+    setsearchValue(e.currentTarget.value);
   };
 
-  const dispatch = useAppDispatch();
-  const search = useAppSelector(getSearch);
+  const onSubmit: SubmitHandler<TFormValues> = async () => {
+    dispatch(changeSearch(searchValue));
+    await trigger(searchValue);
+  };
 
   return (
     <form
@@ -33,7 +43,8 @@ const SearchForm: FC = () => {
         {...register("search")}
         type="search"
         placeholder="Find"
-        defaultValue={search}
+        onChange={handleChange}
+        defaultValue={searchValue}
       />
     </form>
   );
