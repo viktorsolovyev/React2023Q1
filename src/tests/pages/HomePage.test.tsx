@@ -1,7 +1,7 @@
 import React from "react";
 import { describe, it } from "vitest";
 import { render, screen } from "@testing-library/react";
-import HomePage from "../../pages/HomePage";
+import HomePage from "../../pages/HomePage/HomePage";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { setupStore } from "../../store/store";
