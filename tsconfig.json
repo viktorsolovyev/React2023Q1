@@ -15,9 +15,9 @@
     "baseUrl": "./src",
     "resolveJsonModule": true
   },
-  "include": ["./src/**/*", "styled.d.ts"],
+  "include": ["./src/**/*", "styled.d.ts", "vite.config.ts", "server.ts"],
   "ts-node": {
     "esm": true,
-    "transpileOnly": true,
-  },
+    "transpileOnly": true
+  }
 }
