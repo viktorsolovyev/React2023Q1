@@ -21,6 +21,8 @@ describe("Modal", () => {
       const element = screen.getByText(/Rick Sanchez/i);
       expect(element).toBeVisible();
       expect(element).toHaveTextContent("Rick Sanchez");
+      const btn = screen.getByRole("button");
+      btn.click();
     });
   });
 });

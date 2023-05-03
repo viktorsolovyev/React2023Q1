@@ -15,9 +15,11 @@
     "baseUrl": "./src",
     "resolveJsonModule": true
   },
-  "include": ["./src/**/*", "styled.d.ts", "vite.config.ts", "server.ts"],
+  "include": ["./src/**/*", "styled.d.ts", "vite.config.ts", "server.ts", "cypress.d.ts"],
   "ts-node": {
     "esm": true,
-    "transpileOnly": true
+    "transpileOnly": true,
+    "experimentalResolver": true,
+    "experimentalSpecifierResolution": "node"
   }
 }
