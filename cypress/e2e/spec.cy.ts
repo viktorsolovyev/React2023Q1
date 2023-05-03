@@ -8,8 +8,8 @@ describe("The Home Page", () => {
     cy.wait(1000);
     cy.get('img[alt="Rick Sanchez"]').click();
     cy.wait(1000);
-    cy.contains("Name: Rick Sanchez");
-    // cy.get("button[type='button']").first().click();
+    cy.contains("Rick Sanchez");
+    cy.get('[data-testid="close-button"]').click();
   });
   it("Simple test", () => {
     expect(true).to.equal(true);

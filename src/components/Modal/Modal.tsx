@@ -31,7 +31,11 @@ const Modal: FC<ModalProps> = ({ id, modalActive, setModalActive }) => {
                 onClick={(e) => e.stopPropagation()}
               >
                 {isFetching && <>Loading...</>}
-                <button className={classes.closeButton} onClick={closeModal} />
+                <button
+                  data-testid="close-button"
+                  className={classes.closeButton}
+                  onClick={closeModal}
+                />
                 {data && <CardItem character={data} fullInfo={true} />}
               </div>
             </div>
